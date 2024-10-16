@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:spotify_clone_flutter/core/config/assets/app_images.dart';
 import 'package:spotify_clone_flutter/core/config/assets/app_vestors.dart';
 import 'package:spotify_clone_flutter/presentation/intro/pages/get_started.dart';
 
@@ -20,7 +22,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Image.asset(AppVectors.logo),
+        child: SvgPicture.asset(AppVectors.logo),
       ),
     );
   }
