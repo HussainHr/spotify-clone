@@ -3,7 +3,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:spotify_clone_flutter/common/widgets/button/basic_app_button.dart';
 import 'package:spotify_clone_flutter/core/config/theme/app_colors.dart';
 import 'package:spotify_clone_flutter/presentation/choose_mode/pages/choose_mode_screen.dart';
-
 import '../../../core/config/assets/app_images.dart';
 import '../../../core/config/assets/app_vestors.dart';
 

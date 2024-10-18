@@ -1,11 +1,11 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:spotify_clone_flutter/common/widgets/button/rounded_button.dart';
 import 'package:spotify_clone_flutter/core/config/assets/app_images.dart';
+import 'package:spotify_clone_flutter/presentation/auth/pages/signin_or_signup_page.dart';
+import 'package:spotify_clone_flutter/presentation/choose_mode/bloc/theme_cubit.dart';
 import 'package:spotify_clone_flutter/presentation/intro/pages/get_started.dart';
-
 import '../../../common/widgets/button/basic_app_button.dart';
 import '../../../core/config/assets/app_vestors.dart';
 import '../../../core/config/theme/app_colors.dart';
@@ -52,14 +52,18 @@ class ChooseModeScreen extends StatelessWidget {
                     ThemeRoundButton(
                         svgAsset: AppVectors.darkMode,
                         label: "Dark",
-                        onPressed: () {}),
+                        onPressed: () {
+                          context.read<ThemeCubit>().updateTheme(ThemeMode.dark);
+                        }),
                     const SizedBox(
                       width: 40,
                     ),
                     ThemeRoundButton(
                         svgAsset: AppVectors.lightMode,
                         label: "Light",
-                        onPressed: () {}),
+                        onPressed: () {
+                          context.read<ThemeCubit>().updateTheme(ThemeMode.light);
+                        }),
                   ],
                 ),
                 const SizedBox(
@@ -72,7 +76,7 @@ class ChooseModeScreen extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                             builder: (BuildContext context) =>
-                                const GetStarted()));
+                                const SignInOrSignupPage()));
                   },
                 ),
               ],
