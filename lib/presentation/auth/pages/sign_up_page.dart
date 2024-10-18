@@ -11,14 +11,23 @@ import 'package:spotify_clone_flutter/presentation/root/pages/root_page.dart';
 
 import '../../../service_locator.dart';
 
-class SignUpPage extends StatelessWidget {
-  SignUpPage({super.key});
+class SignUpPage extends StatefulWidget {
+  const SignUpPage({super.key});
 
+  @override
+  State<SignUpPage> createState() => _SignUpPageState();
+}
+
+class _SignUpPageState extends State<SignUpPage> {
   final TextEditingController _fullName = TextEditingController();
+
   final TextEditingController _email = TextEditingController();
+
   final TextEditingController _password = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
+
+  bool isLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -47,10 +56,15 @@ class SignUpPage extends StatelessWidget {
               const SizedBox(height: 20),
               _passwordField(context),
               const SizedBox(height: 20),
+              isLoading? 
+              const CircularProgressIndicator():
               BasicAppButton(
                 title: "Create Account",
                 onTap: () async {
                   if (_formKey.currentState!.validate()) {
+                    setState(() {
+                      isLoading = true;
+                    });
                     var result = await sl<SignUpUseCase>().call(
                       params: CreateUserReg(
                           fullName: _fullName.text,
@@ -58,8 +72,7 @@ class SignUpPage extends StatelessWidget {
                           password: _password.text),
                     );
 
-                    result.fold(
-                          (l) {
+                    result.fold((l) {
                         var snackBar = SnackBar(
                           content: Text(
                             l,
@@ -74,11 +87,11 @@ class SignUpPage extends StatelessWidget {
                         Navigator.pushAndRemoveUntil(
                           context,
                           MaterialPageRoute(
-                              builder: (BuildContext context) => const RootPage()),
-                              (route) => false,
-                        );
-                      },
-                    );
+                              builder: (BuildContext context) => const RootPage()), (route) => false);
+                        });
+                    setState(() {
+                      isLoading = false;
+                    });
                   }
                 },
               ),

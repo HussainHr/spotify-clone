@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:spotify_clone_flutter/data/models/auth/create_user_reg.dart';
@@ -39,7 +40,12 @@ class AuthFirebaseServiceImpl extends AuthFirebaseService {
 
       await userCredential.user?.updateDisplayName(createUserReg.fullName);
 
-      return const Right('Sign Up successfully');
+      FirebaseFirestore.instance.collection('Users').doc(userCredential.user?.uid).set({
+        "name": createUserReg.fullName,
+        "email": userCredential.user?.email,
+      });
+      
+      return const Right('SignUp was successfully');
     } on FirebaseAuthException catch (e) {
       String message = "";
 
