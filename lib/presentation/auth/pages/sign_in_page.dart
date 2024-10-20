@@ -8,7 +8,7 @@ import 'package:spotify_clone_flutter/domain/entities/usecases/auth/sign_in.dart
 import 'package:spotify_clone_flutter/presentation/auth/pages/sign_up_page.dart';
 import '../../../core/config/theme/app_colors.dart';
 import '../../../service_locator.dart';
-import '../../root/pages/root_page.dart';
+import '../../home/pages/home_page.dart';
 
 class SignInPage extends StatefulWidget {
   const SignInPage({super.key});
@@ -87,7 +87,7 @@ class _SignInPageState extends State<SignInPage> {
                             context,
                             MaterialPageRoute(
                                 builder: (BuildContext context) =>
-                                const RootPage()),
+                                const HomePage()),
                                 (route) => false);
                       });
 
@@ -183,7 +183,7 @@ class _SignInPageState extends State<SignInPage> {
 // import 'package:spotify_clone_flutter/domain/entities/usecases/auth/sign_in.dart';
 // import 'package:spotify_clone_flutter/presentation/auth/bloc/sign_in_bloc.dart';
 // import 'package:spotify_clone_flutter/presentation/auth/pages/sign_up_page.dart';
-// import '../../root/pages/root_page.dart';
+// import '../../root/pages/home_page.dart';
 //
 // class SignInPage extends StatelessWidget {
 //   SignInPage({super.key});

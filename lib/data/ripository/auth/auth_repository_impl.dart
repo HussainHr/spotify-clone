@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:spotify_clone_flutter/data/models/auth/create_user_reg.dart';
 import 'package:spotify_clone_flutter/data/models/auth/sign_in_user.dart';
 import 'package:spotify_clone_flutter/data/sources/auth/auth_firebase_service.dart';
-import 'package:spotify_clone_flutter/domain/entities/repository/auth_repository.dart';
+import 'package:spotify_clone_flutter/domain/entities/repository/auth/auth_repository.dart';
 
 import '../../../service_locator.dart';
 

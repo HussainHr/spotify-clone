@@ -34,15 +34,15 @@ class AuthFirebaseServiceImpl extends AuthFirebaseService {
   @override
   Future<Either> signUp(CreateUserReg createUserReg) async {
     try {
-      UserCredential userCredential = await FirebaseAuth.instance
+      var data = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(
               email: createUserReg.email, password: createUserReg.password);
 
-      await userCredential.user?.updateDisplayName(createUserReg.fullName);
+      await data.user?.updateDisplayName(createUserReg.fullName);
 
-      FirebaseFirestore.instance.collection('Users').doc(userCredential.user?.uid).set({
+      FirebaseFirestore.instance.collection('Users').doc(data.user?.uid).set({
         "name": createUserReg.fullName,
-        "email": userCredential.user?.email,
+        "email": data.user?.email,
       });
       
       return const Right('SignUp was successfully');
